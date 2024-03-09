@@ -1,0 +1,13 @@
+<section class="container my-3" [ngClass]="{'hide-scrollbar': isLoading}" *ngIf="!isLoading">
+  <div class="row g-4">
+    <div class="col-md-4 col-sm-6 cursor-pointer" *ngFor="let brand of brandsData | paginate: { itemsPerPage: 12, currentPage: p }" >
+      <div class="px-3 brand-item rounded product">
+        <div>
+          <img [src]="brand.image" [alt]="brand.name" class="w-100">
+        </div>
+        <h3 class="text-center">{{brand.name}}</h3>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="d-flex justify-content-center my-4"></pagination-controls>
+</section>

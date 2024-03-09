@@ -1,0 +1,36 @@
+<section *ngIf="step1" class="col-md-6 col-sm-9 col-10 mx-auto bg-main-light rounded shadow p-3 my-3">
+  <p class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</p>
+  <form [formGroup]="forgetForm" (ngSubmit)="forgetPass()">
+    <label for="email" class="my-2">Email</label>
+    <input type="email" class="form-control" formControlName="email">
+    <button class="btn btn-main w-100" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Forgot Password</span>
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    </button>
+    <p class="alert alert-danger my-3 text-center" *ngIf="userMessage">{{userMessage}}</p>
+  </form>
+</section>
+<section *ngIf="step2" class="col-md-6 col-sm-9 mx-auto bg-main-light rounded shadow p-3 my-3">
+  <p class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</p>
+  <form [formGroup]="resetCodeForm" (ngSubmit)="resetCode()">
+    <label for="email" class="my-2">Enter the Code</label>
+    <input type="text" class="form-control" formControlName="resetCode">
+    <button class="btn btn-main w-100" [disabled]="isLoading">
+       <span *ngIf="!isLoading">Reset Code</span>
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    </button>
+    <p class="alert alert-danger my-3 text-center" *ngIf="userMessage">{{userMessage}}</p>
+  </form>
+</section>
+<section *ngIf="step3" class="col-md-6 col-sm-9 mx-auto bg-main-light rounded shadow p-3 my-3">
+  <p class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</p>
+  <form [formGroup]="resetPassForm" (ngSubmit)="resetPass()">
+    <label for="email" class="my-2">Reset Password</label>
+    <input type="password" class="form-control" formControlName="newPassword">
+    <button class="btn btn-main w-100" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Reset</span>
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    </button>
+    <p class="alert alert-danger my-3 text-center" *ngIf="userMessage">{{userMessage}}</p>
+  </form>
+</section>

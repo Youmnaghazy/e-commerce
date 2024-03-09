@@ -1,0 +1,30 @@
+
+<div class="container" [ngClass]="{'hide-scrollbar': isLoading}" *ngIf="productList[0]">
+  <h1 class="h2 text-center fw-bold mt-3"> All Products</h1>
+  <div class="row g-3 mt-4">
+    <div class="col-lg-2 col-md-4 col-sm-6 cursor-pointer"
+      *ngFor="let product of productList | paginate: { itemsPerPage: 12, currentPage: p }">
+      <div class="product p-2 rounded-1">
+        <i *ngIf="!wishlistData.includes(product._id)" class="fa-regular fa-heart heart" (click)="addToFav(product._id)"></i>
+        <i *ngIf="wishlistData.includes(product._id)" class="fa-solid text-danger fa-heart heart" (click)="removeFromFav(product._id)"></i>
+        <div [routerLink]="['/productdetails', product._id]">
+          <img [src]="product.imageCover" alt="" class="w-100">
+          <span class="font-xm text-main">{{product.category.name}}</span>
+          <h3 class="h6">{{product.title.split(' ').splice(0,2).join(' ')}}</h3>
+          <div class="d-flex justify-content-between">
+            <span class="font-sm">{{product.price | currency:'EGP'}}</span>
+            <span class="font-sm">
+              <i class="fa fa-star rating-color"></i>
+              {{product.ratingsAverage}}
+            </span>
+          </div>
+        </div>
+        <button (click)="addProductToCart(product._id)" class="btn bg-main w-100" [disabled]="isSubmitting">
+          <span *ngIf="!isSubmitting">+ Add</span>
+          <i class="fa fa-spinner fa-spin" *ngIf="isSubmitting"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p = $event" class="d-flex justify-content-center my-3"></pagination-controls>
+</div>

@@ -1,0 +1,23 @@
+<section class="container my-4 p-3" *ngIf="!isLoading">
+  <h1 class="text-center my-2 fw-bold">Your Orders:</h1>
+  <div class="w-75 mx-auto bg-main-light p-4">
+    <p class="text-main fw-bold">Total Price Paid: {{totalOrderPrice |currency:'EGP'}}</p>
+    <div class="row g-4 mt-3 align-items-center shadow" *ngFor="let cartItem of cartItems">
+      <div class="col-md-4">
+        <img class="w-100" [src]="cartItem.product.imageCover" [alt]="cartItem.product.title">
+      </div>
+      <div class="col-md-8">
+        <h2>{{cartItem.product.title}}</h2>
+        <span class="text-main fw-bold">{{cartItem.product.category.name}}</span>
+        <div class="d-flex justify-content-between my-2">
+          <span class="font-sm fw-bold">{{cartItem.price| currency:'EGP'}}</span>
+          <span class="font-sm">
+            <i class="fa fa-star rating-color"></i>
+            {{cartItem.product.ratingsAverage}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <button class="btn-main btn d-block ms-auto"[routerLink]="['/home']" >Go Home</button>
+  </div>
+</section>

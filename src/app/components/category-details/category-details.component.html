@@ -1,0 +1,18 @@
+<section class="container my-4"  *ngIf="category.name">
+  <div class="d-flex justify-content-around align-items-center bg-main-light rounded w-75 mx-auto">
+    <div class="p-2">
+      <img [src]="category.image" [alt]="category.name" class="w-100 rounded">
+    </div>
+    <div>
+      <h2 class="text-center text-main fw-bolder">{{category.name}}</h2>
+    </div>
+  </div>
+  <div class="mt-4" *ngIf="subCategoryList[0]">
+    <h2 class="text-center fw-bolder my-4">SubCategory For {{category.name}}:</h2>
+    <div class="row g-4 justify-content-center">
+      <div *ngFor="let cate of subCategoryList" class="col-md-3 col-sm-6 rounded bg-main-light mx-2">
+        <h3 class="fw-bolder text-center text-main py-4 px-2">{{cate.name}}</h3>
+      </div>
+    </div>
+  </div>
+</section>

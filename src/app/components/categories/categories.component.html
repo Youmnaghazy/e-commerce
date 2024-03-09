@@ -1,0 +1,10 @@
+<section class=" container my-3">
+  <div class="row g-3 justify-content-center">
+    <div [routerLink]="['/categoryDetails',category._id]" role="button" class="col-md-4 col-lg-3" *ngFor="let category of categories">
+      <div class="rounded overflow-hidden">
+        <img [src]="category.image" [alt]="category.name" class="w-100" height="270">
+      </div>
+      <h2 class="text-center">{{category.name}}</h2>
+    </div>
+  </div>
+</section>

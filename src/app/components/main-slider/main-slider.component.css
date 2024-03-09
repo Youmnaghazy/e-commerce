@@ -1,0 +1,13 @@
+.col-md-9 img{
+  height: 400px;
+  object-fit: cover;
+  overflow: hidden;
+}
+.col-md-3 img{
+  height: 200px;
+  object-fit: cover;
+  overflow: hidden;
+}
+:host{
+  overflow: hidden;
+}

@@ -1,0 +1,36 @@
+
+<section class="container p-3" [ngClass]="{'hide-scrollbar':isLoading}">
+  <div class="alert alert-danger text-center" *ngIf="errorMessage && productList.length === 0">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div *ngIf="!errorMessage && productList.length > 0">
+    <div class="d-flex justify-content-between">
+      <p class="text-main fw-bolder">Total Price: <span>{{totalCartPrice |currency : 'EGP'}}</span></p>
+    </div>
+    <button (click)="clearUserCart()" class="btn btn-outline-danger d-block ms-auto my-3">CLear All</button>
+    <div class="row align-items-center shadow-sm my-3 p-3" *ngFor="let productItem of productList">
+      <div class="col-md-2">
+        <img [src]="productItem.product.imageCover" class="w-100" alt="">
+      </div>
+      <div class="col-md-10 d-flex justify-content-between">
+        <div>
+          <h2 class="h5">{{productItem.product.title}}</h2>
+          <p>Price: <span>{{productItem.price |currency:'EGP'}}</span></p>
+          <span (click)="removeItem(productItem.product._id)" class="text-danger cursor-pointer">Remove Product <i
+              class="fa fa-trash mx-2"></i></span>
+        </div>
+        <div>
+          <button [disabled]="isAddButtonDisabled(productItem)"
+            (click)="updateItemCount(productItem.product._id,productItem.count+1)" class="bg-main btn btn-main"><i
+              class="fa-solid fa-plus text-white"></i></button>
+          <span class="p-2 fw-bold">{{productItem.count}}</span>
+          <button [disabled]="isDeleteButtonDisabled(productItem)"
+            (click)="updateItemCount(productItem.product._id,productItem.count-1)" class="bg-main btn btn-main"><i
+              class="fa-solid fa-minus text-white"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="!errorMessage && productList.length > 0" [routerLink]="['/payment',cartId]" class="btn btn-main d-block ms-auto mt-3">Online Payment <img src="./assets/imgs/visa-1.svg"
+    alt="visa logo"></button>
+</section>
